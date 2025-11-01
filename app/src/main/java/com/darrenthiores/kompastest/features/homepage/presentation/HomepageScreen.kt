@@ -1,8 +1,6 @@
 package com.darrenthiores.kompastest.features.homepage.presentation
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -10,7 +8,6 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.PullToRefreshDefaults.Indicator
@@ -24,11 +21,11 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.unit.dp
+import com.darrenthiores.kompastest.core_ui.empty.EmptyListView
+import com.darrenthiores.kompastest.core_ui.error.ErrorListView
 import com.darrenthiores.kompastest.core_ui.utils.LocalPadding
-import com.darrenthiores.kompastest.features.homepage.presentation.components.CategoryRow
+import com.darrenthiores.kompastest.features.homepage.presentation.components.HomeShimmer
 import com.darrenthiores.kompastest.features.homepage.presentation.components.HomeTopBar
-import com.darrenthiores.kompastest.features.homepage.presentation.models.HomeCategory
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -97,32 +94,10 @@ fun HomepageScreen(
         Scaffold(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
-                Surface(
-                    shadowElevation = 2.dp,
-                    color = MaterialTheme.colorScheme.primary
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Surface(
-                            shadowElevation = 2.dp,
-                            color = MaterialTheme.colorScheme.primary
-                        ) {
-                            HomeTopBar(
-                                modifier = Modifier,
-                                scrollBehavior = scrollBehavior
-                            )
-                        }
-
-                        CategoryRow(
-                            modifier = Modifier,
-                            selectedCategory = HomeCategory.MAIN,
-                            onSelectCategory = { },
-                        )
-                    }
-                }
+                HomeTopBar(
+                    modifier = Modifier,
+                    scrollBehavior = scrollBehavior
+                )
             },
         ) { scaffoldPadding ->
             LazyColumn(
@@ -139,13 +114,23 @@ fun HomepageScreen(
                     state.homePagingState.items.isEmpty() -> {
                         when {
                             state.homePagingState.isLoading -> {
-
+                                item {
+                                    HomeShimmer()
+                                }
                             }
                             state.homePagingState.error != null -> {
-
+                                item {
+                                    ErrorListView(
+                                        onTryAgain = {
+                                            onEvent(HomepageEvent.OnErrorTryAgain)
+                                        }
+                                    )
+                                }
                             }
                             else -> {
-
+                                item {
+                                    EmptyListView()
+                                }
                             }
                         }
                     }
