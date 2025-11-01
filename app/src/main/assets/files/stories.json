@@ -1,0 +1,50 @@
+{
+  "stories": [
+    {
+      "section": "Kabinet Prabowo",
+      "articles": [
+        {
+          "id": 5,
+          "title": "Kandidat Menteri Prabowo, Profesional yang Sekaligus Kader Parpol",
+          "description": "Dua belas kasus pembunuhan dan analisis data oleh Tim Jurnalisme Data Harian Kompas.",
+          "image_url": "",
+          "image_description": "Foto resmi jajaran menteri berdiri di Istana Negara",
+          "media_count": 10
+        },
+        {
+          "id": 6,
+          "title": "Koalisi Supergemuk; Kabinet 'Zaken' Bukan, Ya?",
+          "description": null
+        },
+        {
+          "id": 7,
+          "title": "Walau Tanpa Partisipasi Publik, DPR Bakal Sahkan Tiga RUU Kilat Kamis Esok",
+          "description": null
+        }
+      ]
+    },
+    {
+      "section": "PON Aceh–Sumut 2024",
+      "articles": [
+        {
+          "id": 8,
+          "title": "Atlet Muda Paling Dirugikan dari Indikasi Kecurangan PON",
+          "label": "Eksklusif",
+          "description": "Dua belas kasus pembunuhan dan analisis data oleh Tim Jurnalisme Data Harian Kompas.",
+          "image_url": "",
+          "image_description": "Punggung atlet dengan kaus hijau mengangkat tangan di stadion penuh penonton"
+        },
+        {
+          "id": 9,
+          "title": "Jaminan Wasit Berkualitas Tumbuhkan Semangat Jatim–Jabar di Final",
+          "description": null
+        },
+        {
+          "id": 10,
+          "title": "Kontroversi di PON Aceh Mencoreng Sepak Bola Indonesia, Bagaimana Itu Terjadi?",
+          "description": null
+        }
+      ]
+    }
+  ]
+}
