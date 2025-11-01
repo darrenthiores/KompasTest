@@ -7,7 +7,8 @@ import com.darrenthiores.kompastest.core.database.entity.ArticleBookmarkEntity
 
 @Database(
     entities = [ArticleBookmarkEntity::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class KompasDatabase: RoomDatabase() {
     abstract fun articleBookmarkDao(): ArticleBookmarkDao
