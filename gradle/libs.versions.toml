@@ -18,6 +18,9 @@ hiltNavigation = "1.3.0"
 materialIconExtended = "1.7.8"
 composeNavigation = "2.7.0-alpha07"
 exoPlayer = "1.8.0"
+mockito = "5.12.0"
+mockitoKotlin = "5.3.1"
+coroutineTest = "1.9.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -49,6 +52,9 @@ hilt-ksp = { group = "com.google.dagger", name = "hilt-android-compiler", versio
 media-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "exoPlayer"}
 media-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "exoPlayer"}
 media-common = { group = "androidx.media3", name = "media3-common", version.ref = "exoPlayer"}
+mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito"}
+mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin"}
+coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutineTest"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
