@@ -55,6 +55,13 @@ class ArticleDetailViewModel @Inject constructor(
             is ArticleDetailEvent.Bookmark -> {
                 onBookmarkArticle()
             }
+            ArticleDetailEvent.ToggleBottomSheet -> {
+                _state.update {
+                    it.copy(
+                        shareBottomSheetOpen = !it.shareBottomSheetOpen
+                    )
+                }
+            }
         }
     }
 

@@ -6,4 +6,5 @@ import com.darrenthiores.kompastest.features.articles.domain.models.ArticleDetai
 data class ArticleDetailState(
     val title: String? = null,
     val articleState: DataState<ArticleDetail, String> = DataState(),
+    val shareBottomSheetOpen: Boolean = false
 )

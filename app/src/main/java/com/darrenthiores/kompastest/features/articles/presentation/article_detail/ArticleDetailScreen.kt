@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.darrenthiores.kompastest.app.navigation.routes.AppRoutes
 import com.darrenthiores.kompastest.core_ui.bar.AppTopBar
+import com.darrenthiores.kompastest.core_ui.bottom_sheet.ShareArticleBottomSheet
 import com.darrenthiores.kompastest.core_ui.empty.EmptyListView
 import com.darrenthiores.kompastest.core_ui.error.ErrorListView
 import com.darrenthiores.kompastest.core_ui.utils.LocalPadding
@@ -128,6 +129,18 @@ fun ArticleDetailScreen(
                     }
                 }
             }
+        }
+    }
+
+    if (state.shareBottomSheetOpen) {
+        state.articleState.data?.let { articleDetail ->
+            ShareArticleBottomSheet(
+                modifier = Modifier,
+                article = articleDetail.toArticle(),
+                onDismiss = {
+                    onEvent(ArticleDetailEvent.ToggleBottomSheet)
+                }
+            )
         }
     }
 }

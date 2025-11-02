@@ -58,7 +58,7 @@ fun ArticleDetailContent(
                 style = MaterialTheme.typography.labelLarge
             )
 
-            article.publishedDate?.let { publishedDate ->
+            article.publishedTime?.let { publishedDate ->
                 Text(
                     text = publishedDate,
                     style = MaterialTheme.typography.labelLarge.copy(

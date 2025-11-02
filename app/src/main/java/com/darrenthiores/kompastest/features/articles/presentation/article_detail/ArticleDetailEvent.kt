@@ -3,4 +3,5 @@ package com.darrenthiores.kompastest.features.articles.presentation.article_deta
 sealed interface ArticleDetailEvent {
     data object OnErrorTryAgain: ArticleDetailEvent
     data object Bookmark: ArticleDetailEvent
+    data object ToggleBottomSheet: ArticleDetailEvent
 }

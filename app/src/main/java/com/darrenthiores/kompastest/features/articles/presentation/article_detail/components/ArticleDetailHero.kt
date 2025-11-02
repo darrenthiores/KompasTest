@@ -102,7 +102,9 @@ fun ArticleDetailHero(
 
                 ArticleUtilityRow(
                     modifier = Modifier,
-                    onClickShare = { },
+                    onClickShare = {
+                        onEvent(ArticleDetailEvent.ToggleBottomSheet)
+                    },
                     isBookmarked = article.bookmarked,
                     onBookmark = {
                         onEvent(ArticleDetailEvent.Bookmark)

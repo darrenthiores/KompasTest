@@ -11,7 +11,21 @@ data class ArticleDetail(
     val imageUrl: String,
     val label: String?,
     val author: String,
-    val publishedDate: String?,
+    val publishedTime: String?,
     val relatedArticles: List<Article>,
     val bookmarked: Boolean = false
-)
+) {
+    fun toArticle(): Article {
+        return Article(
+            id = id ?: -1,
+            title = title,
+            description = description,
+            imageDescription = imageDescription,
+            imageUrl = imageUrl,
+            label = label,
+            publishedTime = publishedTime,
+            author = author,
+            bookmarked = bookmarked
+        )
+    }
+}
