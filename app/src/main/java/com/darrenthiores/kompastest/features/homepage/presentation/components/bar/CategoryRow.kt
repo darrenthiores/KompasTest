@@ -1,4 +1,4 @@
-package com.darrenthiores.kompastest.features.homepage.presentation.components
+package com.darrenthiores.kompastest.features.homepage.presentation.components.bar
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

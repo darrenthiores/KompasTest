@@ -10,6 +10,8 @@ data class ArticleDetail(
     val imageDescription: String?,
     val imageUrl: String,
     val label: String?,
+    val author: String,
+    val publishedDate: String?,
     val relatedArticles: List<Article>,
     val bookmarked: Boolean = false
 )

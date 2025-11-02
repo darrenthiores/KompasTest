@@ -11,7 +11,8 @@ data class ArticleDto(
     val description: String? = null,
     @SerialName("image_description") val imageDescription: String? = null,
     @SerialName("image_url") val imageUrl: String? = null,
-    val label: String? = null
+    val label: String? = null,
+    @SerialName("published_time") val publishedTime: String? = null
 ) {
     fun toDomain(): Article? {
         return Article(
@@ -20,7 +21,8 @@ data class ArticleDto(
             description = description.orEmpty(),
             imageDescription = imageDescription,
             imageUrl = imageUrl,
-            label = label
+            label = label,
+            publishedTime = publishedTime
         )
     }
 }

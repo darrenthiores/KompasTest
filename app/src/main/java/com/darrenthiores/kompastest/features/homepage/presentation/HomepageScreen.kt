@@ -24,8 +24,8 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import com.darrenthiores.kompastest.core_ui.empty.EmptyListView
 import com.darrenthiores.kompastest.core_ui.error.ErrorListView
 import com.darrenthiores.kompastest.core_ui.utils.LocalPadding
-import com.darrenthiores.kompastest.features.homepage.presentation.components.HomeShimmer
-import com.darrenthiores.kompastest.features.homepage.presentation.components.HomeTopBar
+import com.darrenthiores.kompastest.features.homepage.presentation.components.loading.HomeShimmer
+import com.darrenthiores.kompastest.features.homepage.presentation.components.bar.HomeTopBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -1,4 +1,4 @@
-package com.darrenthiores.kompastest.features.homepage.presentation.components
+package com.darrenthiores.kompastest.features.homepage.presentation.components.loading
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
