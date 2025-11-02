@@ -4,7 +4,7 @@
   "description": "Serangan hipotermia menjadi salah satu ancaman yang mesti diwaspadai saat melakukan pendakian gunung.",
   "content": "Serangan hipotermia menjadi salah satu ancaman paling berbahaya yang sering diabaikan para pendaki gunung, terutama saat berada di wilayah bersuhu ekstrem seperti Puncak Carstensz. Hipotermia terjadi ketika suhu tubuh menurun drastis akibat paparan cuaca dingin dalam waktu lama tanpa perlindungan memadai, membuat tubuh kehilangan kemampuan untuk menjaga panasnya sendiri.\n\nKasus terbaru di Puncak Carstensz kembali mengingatkan pentingnya persiapan matang sebelum mendaki di ketinggian ekstrem. Pendaki disarankan membawa perlengkapan hangat, menjaga asupan energi, serta mengenali tanda-tanda awal hipotermia seperti menggigil, kulit pucat, dan disorientasi agar dapat mengambil tindakan cepat sebelum kondisi memburuk.",
   "image_description": "Pendaki dalam cuaca bersalju di puncak gunung",
-  "image_url": "",
+  "image_url": "https://picsum.photos/800/600?random=1",
   "author": "John Doe",
   "published_time":  "2 November 2025, 09:12 WIB",
   "related_articles": [
@@ -12,7 +12,7 @@
       "id": 3,
       "title": "Pertamina Akan Maksimalkan Pemanfaatan Minyak Mentah Dalam Negeri",
       "description": "Pertamina menargetkan peningkatan efisiensi melalui optimalisasi minyak mentah lokal untuk kebutuhan kilang dalam negeri.",
-      "image_url": "",
+      "image_url": "https://picsum.photos/800/600?random=2",
       "label": "nasional",
       "published_time":  "2 November 2025, 09:12 WIB"
     },
@@ -20,7 +20,7 @@
       "id": 4,
       "title": "Lokasi Dua Gempa di Selatan Jabar Berdekatan, Warga Diminta Waspada",
       "description": "BMKG mengimbau masyarakat tetap waspada meski gempa tersebut tidak berpotensi tsunami.",
-      "image_url": "",
+      "image_url": "https://picsum.photos/800/600?random=3",
       "label": "bencana",
       "published_time":  "1 November 2025, 09:12 WIB"
     }

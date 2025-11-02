@@ -5,21 +5,21 @@
       "title": "Kabar Duka Pendaki di Puncak Carstensz, Ancaman Mematikan akibat Hipotermia",
       "description": "Serangan hipotermia menjadi salah satu ancaman yang mesti diwaspadai saat melakukan pendakian gunung.",
       "image_description": "Pendaki dalam cuaca bersalju di puncak gunung",
-      "image_url": ""
+      "image_url": "https://picsum.photos/800/600?random=1"
     },
     {
       "id": 2,
       "title": "Delta Airlines Terbalik Saat Mendarat, 18 Orang Terluka",
       "description": null,
       "image_description": "Pesawat di landasan bersalju dengan kendaraan evakuasi",
-      "image_url": ""
+      "image_url": "https://picsum.photos/800/600?random=2"
     },
     {
       "id": 3,
       "title": "Pertamina Akan Maksimalkan Pemanfaatan Minyak Mentah Dalam Negeri",
       "description": null,
       "image_description": "Sejumlah petugas Pertamina berfoto di kilang atau lokasi operasional",
-      "image_url": ""
+      "image_url": "https://picsum.photos/800/600?random=3"
     },
     {
       "id": 4,
@@ -27,7 +27,7 @@
       "label": "Bebas Akses",
       "description": null,
       "image_description": "Pemandangan alam saat senja dengan langit berwarna oranye",
-      "image_url": ""
+      "image_url": "https://picsum.photos/800/600?random=4"
     }
   ]
 }

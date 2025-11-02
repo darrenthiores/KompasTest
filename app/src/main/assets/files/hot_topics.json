@@ -4,22 +4,27 @@
     {
       "title": "Kunjungan Paus",
       "image_description": "Paus Fransiskus melambaikan tangan"
+      ,"image_url": "https://picsum.photos/800/600?random=1"
     },
     {
       "title": "Kabinet Prabowo",
       "image_description": "Prabowo Subianto bersama pejabat lainnya"
+      ,"image_url": "https://picsum.photos/800/600?random=2"
     },
     {
       "title": "PON 2024",
       "image_description": "Logo dan maskot PON 2024"
+      ,"image_url": "https://picsum.photos/800/600?random=3"
     },
     {
       "title": "Pilkada 2024",
       "image_description": "Ilustrasi Pilkada dengan kotak suara"
+      ,"image_url": "https://picsum.photos/800/600?random=4"
     },
     {
       "title": "Macet Puncak",
       "image_description": "Kemacetan kendaraan di jalur Puncak"
+      ,"image_url": "https://picsum.photos/800/600?random=5"
     }
   ]
 }

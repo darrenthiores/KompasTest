@@ -4,16 +4,22 @@
   "published_time": "5 menit lalu",
   "articles": [
     {
+      "id": 13,
       "title": "Kasus Pembunuhan Global: Ekonomi Lemah, Pembunuhan Bertambah",
       "description": "Analisis mendalam mengenai tren pembunuhan di berbagai negara.",
+      "image_url": "https://picsum.photos/800/600?random=1",
       "published_time": "5 menit lalu"
     },
     {
+      "id": 14,
       "title": "Cepat Emosi, Anak Muda Indonesia Gampang Membunuh",
+      "image_url": "https://picsum.photos/800/600?random=2",
       "published_time": "5 menit lalu"
     },
     {
+      "id": 15,
       "title": "Pembunuhan oleh Keluarga, dari Suami Bunuh Istri hingga Ibu Bunuh Anak",
+      "image_url": "https://picsum.photos/800/600?random=3",
       "published_time": "5 menit lalu"
     }
   ],
