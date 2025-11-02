@@ -2,6 +2,7 @@ package com.darrenthiores.kompastest.features.homepage.presentation.components.b
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,6 +28,7 @@ import com.darrenthiores.kompastest.app.theme.GrayBackground
 import com.darrenthiores.kompastest.app.theme.GrayDark
 import com.darrenthiores.kompastest.app.theme.GrayLight
 import com.darrenthiores.kompastest.app.theme.GrayRegular
+import com.darrenthiores.kompastest.core.models.articles.Article
 import com.darrenthiores.kompastest.core.models.highlights.BreakingNews
 import com.darrenthiores.kompastest.core_ui.row.ArticleUtilityRow
 import com.darrenthiores.kompastest.features.homepage.presentation.components.items.TextArticleItem
@@ -34,7 +36,10 @@ import com.darrenthiores.kompastest.features.homepage.presentation.components.it
 @Composable
 fun BreakingNewsBlockView(
     modifier: Modifier = Modifier,
-    breakingNews: BreakingNews
+    breakingNews: BreakingNews,
+    onClick: (Article) -> Unit,
+    onClickShare: (Article) -> Unit,
+    onBookmark: (Article) -> Unit,
 ) {
     val mainArticle = remember(breakingNews) {
         breakingNews.articles.getOrNull(0)
@@ -55,7 +60,22 @@ fun BreakingNewsBlockView(
     ) {
         BreakingNewsHero(
             modifier = Modifier,
-            breakingNews = breakingNews
+            breakingNews = breakingNews,
+            onClick = {
+                mainArticle?.let { article ->
+                    onClick(article)
+                }
+            },
+            onClickShare = {
+                mainArticle?.let { article ->
+                    onClickShare(article)
+                }
+            },
+            onBookmark = {
+                mainArticle?.let { article ->
+                    onBookmark(article)
+                }
+            }
         )
 
         AsyncImage(
@@ -85,7 +105,13 @@ fun BreakingNewsBlockView(
                         modifier = Modifier,
                         article = article,
                         onClick = {
-
+                            onClick(article)
+                        },
+                        onClickShare = {
+                            onClickShare(article)
+                        },
+                        onBookmark = {
+                            onBookmark(article)
                         }
                     )
                 }
@@ -97,7 +123,10 @@ fun BreakingNewsBlockView(
 @Composable
 private fun BreakingNewsHero(
     modifier: Modifier = Modifier,
-    breakingNews: BreakingNews
+    breakingNews: BreakingNews,
+    onClick: () -> Unit,
+    onClickShare: () -> Unit,
+    onBookmark: () -> Unit,
 ) {
     val article = remember(breakingNews) {
         breakingNews.articles.getOrNull(0)
@@ -121,54 +150,64 @@ private fun BreakingNewsHero(
         )
 
         Column(
-            modifier = Modifier
-                .fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            modifier = modifier
+                .fillMaxWidth()
+                .clickable {
+                    onClick.invoke()
+                },
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Text(
-                text = article?.title ?: "-",
-                style = MaterialTheme.typography.titleLarge.copy(
-                    fontWeight = FontWeight.Medium,
-                    textAlign = TextAlign.Center
-                )
-            )
-
-            article?.description?.let { description ->
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
                 Text(
-                    text = description,
-                    style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.Normal,
-                        textAlign = TextAlign.Center,
-                        color = GrayRegular
+                    text = article?.title ?: "-",
+                    style = MaterialTheme.typography.titleLarge.copy(
+                        fontWeight = FontWeight.Medium,
+                        textAlign = TextAlign.Center
                     )
                 )
+
+                article?.description?.let { description ->
+                    Text(
+                        text = description,
+                        style = MaterialTheme.typography.titleMedium.copy(
+                            fontWeight = FontWeight.Normal,
+                            textAlign = TextAlign.Center,
+                            color = GrayRegular
+                        )
+                    )
+                }
             }
-        }
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            Text(
+            Row(
                 modifier = Modifier
-                    .weight(1f),
-                text = article?.publishedTime.orEmpty(),
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    color = if (isSystemInDarkTheme()) GrayDark
-                    else GrayRegular
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Text(
+                    modifier = Modifier
+                        .weight(1f),
+                    text = article?.publishedTime.orEmpty(),
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        color = if (isSystemInDarkTheme()) GrayDark
+                        else GrayRegular
+                    )
                 )
-            )
 
-            ArticleUtilityRow(
-                modifier = modifier,
-                onClickShare = { },
-                isBookmarked = article?.bookmarked ?: false,
-                onBookmark = { },
-                isAudioActive = false,
-                onClickAudio = { },
-            )
+                ArticleUtilityRow(
+                    modifier = modifier,
+                    onClickShare = onClickShare,
+                    isBookmarked = article?.bookmarked ?: false,
+                    onBookmark = onBookmark,
+                    isAudioActive = false,
+                    onClickAudio = { },
+                )
+            }
         }
     }
 }

@@ -21,7 +21,10 @@ import com.darrenthiores.kompastest.features.homepage.presentation.components.it
 @Composable
 fun ArticlesBlockView(
     modifier: Modifier = Modifier,
-    articles: List<Article>
+    articles: List<Article>,
+    onClick: (Article) -> Unit,
+    onClickShare: (Article) -> Unit,
+    onBookmark: (Article) -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -51,7 +54,16 @@ fun ArticlesBlockView(
                             .padding(
                                 vertical = 24.dp
                             ),
-                        article = article
+                        article = article,
+                        onClick = {
+                            onClick(article)
+                        },
+                        onClickShare = {
+                            onClickShare(article)
+                        },
+                        onBookmark = {
+                            onBookmark(article)
+                        }
                     )
                 }
             }
@@ -63,7 +75,13 @@ fun ArticlesBlockView(
                         ),
                     article = article,
                     onClick = {
-
+                        onClick(article)
+                    },
+                    onClickShare = {
+                        onClickShare(article)
+                    },
+                    onBookmark = {
+                        onBookmark(article)
                     }
                 )
             }

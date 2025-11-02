@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.darrenthiores.kompastest.app.theme.GrayLight
 import com.darrenthiores.kompastest.app.theme.GrayRegular
+import com.darrenthiores.kompastest.core.models.articles.Article
 import com.darrenthiores.kompastest.core.models.stories.Story
 import com.darrenthiores.kompastest.features.homepage.presentation.components.items.FullArticleItem
 import com.darrenthiores.kompastest.features.homepage.presentation.components.items.TextArticleItem
@@ -38,7 +39,10 @@ import com.darrenthiores.kompastest.features.homepage.presentation.components.it
 @Composable
 fun StoryBlockView(
     modifier: Modifier = Modifier,
-    story: Story
+    story: Story,
+    onClick: (Article) -> Unit,
+    onClickShare: (Article) -> Unit,
+    onBookmark: (Article) -> Unit,
 ) {
     val mainArticle = remember(story) {
         story.articles?.getOrNull(0)
@@ -62,7 +66,22 @@ fun StoryBlockView(
 
         FullArticleItem(
             modifier = Modifier,
-            article = mainArticle
+            article = mainArticle,
+            onClick = {
+                mainArticle?.let { article ->
+                    onClick(article)
+                }
+            },
+            onClickShare = {
+                mainArticle?.let { article ->
+                    onClickShare(article)
+                }
+            },
+            onBookmark = {
+                mainArticle?.let { article ->
+                    onBookmark(article)
+                }
+            }
         )
 
         if (story.articles?.drop(1)?.isNotEmpty() == true) {
@@ -82,7 +101,13 @@ fun StoryBlockView(
                         modifier = Modifier,
                         article = article,
                         onClick = {
-
+                            onClick(article)
+                        },
+                        onClickShare = {
+                            onClickShare(article)
+                        },
+                        onBookmark = {
+                            onBookmark(article)
                         }
                     )
                 }

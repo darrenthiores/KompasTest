@@ -27,10 +27,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
+import com.darrenthiores.kompastest.app.navigation.routes.AppRoutes
 import com.darrenthiores.kompastest.app.theme.GrayLight
+import com.darrenthiores.kompastest.core_ui.bottom_sheet.ShareArticleBottomSheet
 import com.darrenthiores.kompastest.core_ui.empty.EmptyListView
 import com.darrenthiores.kompastest.core_ui.error.ErrorListView
 import com.darrenthiores.kompastest.core_ui.utils.LocalPadding
+import com.darrenthiores.kompastest.core_ui.utils.encodeForRoute
 import com.darrenthiores.kompastest.features.homepage.domain.models.HomepageBlock
 import com.darrenthiores.kompastest.features.homepage.presentation.components.bar.HomeTopBar
 import com.darrenthiores.kompastest.features.homepage.presentation.components.blocks.AdsBlockView
@@ -105,7 +108,8 @@ fun HomepageScreen(
                 state = pullToRefreshState
             )
         }
-    ) {
+    )
+    {
         Scaffold(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
@@ -160,10 +164,50 @@ fun HomepageScreen(
                                     AdsBlockView(ads = block.ads)
                                 }
                                 is HomepageBlock.ArticlesBlock -> {
-                                    ArticlesBlockView(articles = block.articles)
+                                    ArticlesBlockView(
+                                        articles = block.articles,
+                                        onClick = { article ->
+                                            val encodedTitle = article.title.encodeForRoute()
+
+                                            onNavigate(
+                                                AppRoutes.ARTICLE_DETAIL.name + "?title=${encodedTitle}" + "&article_id=${article.id}"
+                                            )
+                                        },
+                                        onClickShare = { article ->
+                                            onEvent(HomepageEvent.ToggleShareArticle(article))
+                                        },
+                                        onBookmark = { article ->
+                                            onEvent(
+                                                HomepageEvent.BookmarkArticle(
+                                                    block = block,
+                                                    articleId = article.id
+                                                )
+                                            )
+                                        }
+                                    )
                                 }
                                 is HomepageBlock.BreakingNewsBlock -> {
-                                    BreakingNewsBlockView(breakingNews = block.breakingNews)
+                                    BreakingNewsBlockView(
+                                        breakingNews = block.breakingNews,
+                                        onClick = { article ->
+                                            val encodedTitle = article.title.encodeForRoute()
+
+                                            onNavigate(
+                                                AppRoutes.ARTICLE_DETAIL.name + "?title=${encodedTitle}" + "&article_id=${article.id}"
+                                            )
+                                        },
+                                        onClickShare = { article ->
+                                            onEvent(HomepageEvent.ToggleShareArticle(article))
+                                        },
+                                        onBookmark = { article ->
+                                            onEvent(
+                                                HomepageEvent.BookmarkArticle(
+                                                    block = block,
+                                                    articleId = article.id
+                                                )
+                                            )
+                                        }
+                                    )
                                 }
                                 is HomepageBlock.CampaignBlock -> {
                                     CampaignBlockView(campaign = block.campaign)
@@ -172,10 +216,39 @@ fun HomepageScreen(
                                     HotTopicsBlockView(hotTopics = block.hotTopics)
                                 }
                                 is HomepageBlock.LiveReportBlock -> {
-                                    LiveReportBlockView(liveReport = block.liveReport)
+                                    LiveReportBlockView(
+                                        liveReport = block.liveReport,
+                                        onClick = { article ->
+                                            val encodedTitle = article.title.encodeForRoute()
+
+                                            onNavigate(
+                                                AppRoutes.ARTICLE_DETAIL.name + "?title=${encodedTitle}" + "&article_id=${article.id}"
+                                            )
+                                        },
+                                    )
                                 }
                                 is HomepageBlock.StoryBlock -> {
-                                    StoryBlockView(story = block.story)
+                                    StoryBlockView(
+                                        story = block.story,
+                                        onClick = { article ->
+                                            val encodedTitle = article.title.encodeForRoute()
+
+                                            onNavigate(
+                                                AppRoutes.ARTICLE_DETAIL.name + "?title=${encodedTitle}" + "&article_id=${article.id}"
+                                            )
+                                        },
+                                        onClickShare = { article ->
+                                            onEvent(HomepageEvent.ToggleShareArticle(article))
+                                        },
+                                        onBookmark = { article ->
+                                            onEvent(
+                                                HomepageEvent.BookmarkArticle(
+                                                    block = block,
+                                                    articleId = article.id
+                                                )
+                                            )
+                                        }
+                                    )
                                 }
                             }
                         }
@@ -204,5 +277,15 @@ fun HomepageScreen(
                 }
             }
         }
+    }
+
+    state.selectedArticle?.let { article ->
+        ShareArticleBottomSheet(
+            modifier = Modifier,
+            article = article,
+            onDismiss = {
+                onEvent(HomepageEvent.ToggleShareArticle(null))
+            }
+        )
     }
 }

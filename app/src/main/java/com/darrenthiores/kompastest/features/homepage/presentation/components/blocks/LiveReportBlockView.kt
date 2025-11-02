@@ -43,7 +43,8 @@ import com.darrenthiores.kompastest.features.homepage.presentation.components.it
 @Composable
 fun LiveReportBlockView(
     modifier: Modifier = Modifier,
-    liveReport: LiveReport
+    liveReport: LiveReport,
+    onClick: (Article) -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -57,7 +58,8 @@ fun LiveReportBlockView(
         // Hero
         LiveReportHero(
             modifier = Modifier,
-            liveReport = liveReport
+            liveReport = liveReport,
+            onClick = onClick
         )
 
         if (liveReport.featuredArticles.isNotEmpty()) {
@@ -77,7 +79,7 @@ fun LiveReportBlockView(
                         modifier = Modifier,
                         article = article,
                         onClick = {
-
+                            onClick(article)
                         }
                     )
                 }
@@ -89,7 +91,8 @@ fun LiveReportBlockView(
 @Composable
 private fun LiveReportHero(
     modifier: Modifier = Modifier,
-    liveReport: LiveReport
+    liveReport: LiveReport,
+    onClick: (Article) -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -151,6 +154,12 @@ private fun LiveReportHero(
             }
 
             Text(
+                modifier = Modifier
+                    .clickable {
+                        liveReport.mainArticle?.let { article ->
+                            onClick(article)
+                        }
+                    },
                 text = liveReport.mainArticle?.title ?: "-",
                 style = MaterialTheme.typography.titleMedium.copy(
                     fontWeight = FontWeight.Medium
@@ -172,7 +181,10 @@ private fun LiveReportHero(
                         ArticleTimelineItem(
                             modifier = Modifier,
                             article = article,
-                            lastItem = index == liveReport.relatedArticles.lastIndex
+                            lastItem = index == liveReport.relatedArticles.lastIndex,
+                            onClick = {
+                                onClick(article)
+                            }
                         )
                     }
                 }
@@ -249,7 +261,8 @@ private fun MoreReportsRow(
 private fun ArticleTimelineItem(
     modifier: Modifier = Modifier,
     article: Article,
-    lastItem: Boolean = false
+    lastItem: Boolean = false,
+    onClick: () -> Unit
 ) {
     Row(
         modifier = modifier
@@ -290,7 +303,7 @@ private fun ArticleTimelineItem(
             modifier = Modifier
                 .weight(1f)
                 .clickable {
-
+                    onClick.invoke()
                 }
                 .padding(
                     bottom = if (lastItem) 0.dp

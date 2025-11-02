@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -49,7 +48,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.darrenthiores.kompastest.R
-import com.darrenthiores.kompastest.app.theme.GrayDark
 import com.darrenthiores.kompastest.app.theme.GrayLight
 import com.darrenthiores.kompastest.app.theme.GrayRegular
 import com.darrenthiores.kompastest.core.models.articles.Article
@@ -272,8 +270,7 @@ private fun RowScope.ShareCircle(
                     onClick.invoke()
                 }
                 .background(
-                    color = if (isSystemInDarkTheme()) GrayDark
-                    else GrayLight
+                    color = MaterialTheme.colorScheme.surface
                 ),
             contentAlignment = Alignment.Center
         ) {

@@ -1,5 +1,6 @@
 package com.darrenthiores.kompastest.features.homepage.presentation.components.items
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,11 +19,17 @@ import com.darrenthiores.kompastest.core_ui.row.ArticleUtilityRow
 @Composable
 fun FullArticleItem(
     modifier: Modifier = Modifier,
-    article: Article?
+    article: Article?,
+    onClick: () -> Unit,
+    onClickShare: () -> Unit,
+    onBookmark: () -> Unit,
 ) {
     Column(
         modifier = modifier
             .fillMaxWidth()
+            .clickable {
+                onClick.invoke()
+            }
             .padding(
                 horizontal = 16.dp
             ),
@@ -52,9 +59,9 @@ fun FullArticleItem(
         ArticleUtilityRow(
             modifier = Modifier
                 .align(Alignment.End),
-            onClickShare = { },
+            onClickShare = onClickShare,
             isBookmarked = article?.bookmarked ?: false,
-            onBookmark = { },
+            onBookmark = onBookmark,
             isAudioActive = false,
             onClickAudio = { },
         )

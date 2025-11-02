@@ -24,7 +24,9 @@ import com.darrenthiores.kompastest.core_ui.row.ArticleUtilityRow
 fun TextArticleItem(
     modifier: Modifier = Modifier,
     article: Article,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onClickShare: () -> Unit,
+    onBookmark: () -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -65,9 +67,9 @@ fun TextArticleItem(
 
             ArticleUtilityRow(
                 modifier = modifier,
-                onClickShare = { },
+                onClickShare = onClickShare,
                 isBookmarked = article.bookmarked,
-                onBookmark = { },
+                onBookmark = onBookmark,
                 isAudioActive = false,
                 onClickAudio = { },
             )

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.darrenthiores.kompastest.core.utils.models.Resource
 import com.darrenthiores.kompastest.core_ui.paging.AppPagingFactory
+import com.darrenthiores.kompastest.features.bookmark.domain.use_cases.BookmarkArticle
 import com.darrenthiores.kompastest.features.homepage.domain.models.HomepageBlock
 import com.darrenthiores.kompastest.features.homepage.domain.use_cases.GetHomepageBlocks
 import com.darrenthiores.kompastest.features.homepage.domain.use_cases.GetNextHomepageBlocks
@@ -18,7 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomepageViewModel @Inject constructor(
     private val getHomepageBlocks: GetHomepageBlocks,
-    private val getNextHomepageBlocks: GetNextHomepageBlocks
+    private val getNextHomepageBlocks: GetNextHomepageBlocks,
+    private val bookmarkArticle: BookmarkArticle
 ): ViewModel() {
     private val _state = MutableStateFlow(HomepageState())
     val state = _state.asStateFlow()
@@ -85,6 +87,19 @@ class HomepageViewModel @Inject constructor(
                 }
 
                 onRefresh()
+            }
+            is HomepageEvent.BookmarkArticle -> {
+                onBookmarkArticle(
+                    block = event.block,
+                    articleId = event.articleId
+                )
+            }
+            is HomepageEvent.ToggleShareArticle -> {
+                _state.update {
+                    it.copy(
+                        selectedArticle = event.article
+                    )
+                }
             }
         }
     }
@@ -182,6 +197,68 @@ class HomepageViewModel @Inject constructor(
                     isRefreshing = false
                 )
             }
+        }
+    }
+
+    private fun onBookmarkArticle(
+        block: HomepageBlock,
+        articleId: Int
+    ) {
+        viewModelScope.launch {
+            val newBlock = when (block) {
+                is HomepageBlock.ArticlesBlock -> {
+                    HomepageBlock.ArticlesBlock(
+                        articles = block.articles.map { article ->
+                            article.copy(
+                                bookmarked = if (article.id == articleId) !article.bookmarked
+                                else article.bookmarked
+                            )
+                        }
+                    )
+                }
+                is HomepageBlock.BreakingNewsBlock -> {
+                    HomepageBlock.BreakingNewsBlock(
+                        breakingNews = block.breakingNews.copy(
+                            articles = block.breakingNews.articles.map { article ->
+                                article.copy(
+                                    bookmarked = if (article.id == articleId) !article.bookmarked
+                                    else article.bookmarked
+                                )
+                            }
+                        )
+                    )
+                }
+                is HomepageBlock.StoryBlock -> {
+                    HomepageBlock.StoryBlock(
+                        story = block.story.copy(
+                            articles = block.story.articles?.map { article ->
+                                article.copy(
+                                    bookmarked = if (article.id == articleId) !article.bookmarked
+                                    else article.bookmarked
+                                )
+                            }
+                        )
+                    )
+                }
+                else -> return@launch
+            }
+
+            val blocks = state.value.homePagingState.items
+                .map { currentBlock ->
+                    if (currentBlock.id == block.id) {
+                        newBlock
+                    } else currentBlock
+                }
+
+            _state.update {
+                it.copy(
+                    homePagingState = it.homePagingState.copy(
+                        items = blocks
+                    )
+                )
+            }
+
+            bookmarkArticle(id = articleId)
         }
     }
 }
