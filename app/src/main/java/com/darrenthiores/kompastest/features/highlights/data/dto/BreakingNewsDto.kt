@@ -28,6 +28,7 @@ data class BreakingNewsDto(
     data class ArticleDto(
         val id: Int? = null,
         val title: String? = null,
+        val description: String? = null,
         @SerialName("published_time") val publishedTime: String? = null
     ) {
         fun toDomain(): Article {
@@ -35,7 +36,7 @@ data class BreakingNewsDto(
                 id = id ?: -1,
                 title = title.orEmpty(),
                 publishedTime = publishedTime,
-                description = "",
+                description = description.orEmpty(),
                 imageUrl = null,
             )
         }

@@ -1,4 +1,4 @@
 {
   "url": "https://www.kompas.id/",
-  "image_path": "/assets/images/banner.jpg"
+  "image_path": "file:///android_asset/images/banner.jpg"
 }

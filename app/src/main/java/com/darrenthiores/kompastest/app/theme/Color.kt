@@ -9,3 +9,5 @@ val GrayBackground = Color(0xFFeeeeee)
 
 val BluePrimary = Color(0xFF00559a)
 val GreenRegular = Color(0xFF51a900)
+val YellowRegular = Color(0xFFdbaa00)
+val RedRegular = Color(0xFFd71920)

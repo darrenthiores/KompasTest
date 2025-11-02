@@ -1,5 +1,5 @@
 {
   "title": "Campaign",
   "url": "https://www.kompas.id/",
-  "image_path": "/assets/images/campaign.png"
+  "image_path": "file:///android_asset/images/campaign.png"
 }

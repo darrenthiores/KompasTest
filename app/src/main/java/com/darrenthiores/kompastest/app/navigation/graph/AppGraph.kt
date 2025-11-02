@@ -79,12 +79,6 @@ fun AppGraph(
 
                     UpdateAppearance()
 
-                    LaunchedEffect(true) {
-                        navController.navigate(
-                            AppRoutes.ARTICLE_DETAIL.name + "?title=&article_id=1"
-                        )
-                    }
-
                     HomepageScreen(
                         state = state,
                         onEvent = viewModel::onEvent,

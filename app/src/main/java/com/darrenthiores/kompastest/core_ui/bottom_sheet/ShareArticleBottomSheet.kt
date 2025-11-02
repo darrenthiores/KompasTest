@@ -6,6 +6,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -41,11 +42,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.darrenthiores.kompastest.R
 import com.darrenthiores.kompastest.app.theme.GrayDark
 import com.darrenthiores.kompastest.app.theme.GrayLight
 import com.darrenthiores.kompastest.app.theme.GrayRegular
@@ -128,6 +131,14 @@ private fun ColumnScope.ArticlePreview(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
+            Image(
+                modifier = Modifier
+                    .align(Alignment.End)
+                    .height(24.dp),
+                painter = painterResource(R.drawable.logo_kompas),
+                contentDescription = "Kompas Logo"
+            )
+
             AsyncImage(
                 modifier = Modifier
                     .fillMaxWidth()
