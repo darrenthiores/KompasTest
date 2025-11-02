@@ -84,6 +84,8 @@ fun ArticleDetailScreen(
                     ArticleDetailHero(
                         title = state.title,
                         article = articleDetail,
+                        isAudioPlaying = state.audioIsPlaying,
+                        isAudioBuffering = state.audioIsLoading,
                         onEvent = onEvent
                     )
                 }

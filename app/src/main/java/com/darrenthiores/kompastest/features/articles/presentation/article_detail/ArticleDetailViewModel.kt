@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.darrenthiores.kompastest.core.utils.models.Resource
+import com.darrenthiores.kompastest.core_ui.audio.AudioPlayer
 import com.darrenthiores.kompastest.core_ui.utils.decodeFromRoute
 import com.darrenthiores.kompastest.features.articles.domain.use_cases.GetArticleById
 import com.darrenthiores.kompastest.features.bookmark.domain.use_cases.BookmarkArticle
@@ -19,7 +20,8 @@ import javax.inject.Inject
 class ArticleDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val getArticleById: GetArticleById,
-    private val bookmarkArticle: BookmarkArticle
+    private val bookmarkArticle: BookmarkArticle,
+    private val audioPlayer: AudioPlayer
 ): ViewModel() {
     private val _state = MutableStateFlow(ArticleDetailState())
     val state = _state.asStateFlow()
@@ -45,6 +47,30 @@ class ArticleDetailViewModel @Inject constructor(
                 fetchArticleDetail(id = it)
             }
         }
+
+        viewModelScope.launch {
+            audioPlayer.isPlaying.collect { playing ->
+                _state.update {
+                    it.copy(
+                        audioIsPlaying = playing
+                    )
+                }
+            }
+        }
+        viewModelScope.launch {
+            audioPlayer.isLoading.collect { isLoading ->
+                _state.update {
+                    it.copy(
+                        audioIsLoading = isLoading
+                    )
+                }
+            }
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        audioPlayer.release()
     }
 
     fun onEvent(event: ArticleDetailEvent) {
@@ -59,6 +85,18 @@ class ArticleDetailViewModel @Inject constructor(
                 _state.update {
                     it.copy(
                         shareBottomSheetOpen = !it.shareBottomSheetOpen
+                    )
+                }
+            }
+            ArticleDetailEvent.ToggleAudioPlayer -> {
+                val audioUrl = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+
+                if (state.value.audioIsPlaying) {
+                    audioPlayer.pause()
+                }
+                else {
+                    audioPlayer.play(
+                        url = audioUrl
                     )
                 }
             }

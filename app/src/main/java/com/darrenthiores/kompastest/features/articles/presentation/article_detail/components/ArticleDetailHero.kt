@@ -37,6 +37,8 @@ fun ArticleDetailHero(
     modifier: Modifier = Modifier,
     title: String?,
     article: ArticleDetail,
+    isAudioPlaying: Boolean,
+    isAudioBuffering: Boolean,
     onEvent: (ArticleDetailEvent) -> Unit
 ) {
     val configuration = LocalConfiguration.current
@@ -109,8 +111,11 @@ fun ArticleDetailHero(
                     onBookmark = {
                         onEvent(ArticleDetailEvent.Bookmark)
                     },
-                    isAudioActive = false,
-                    onClickAudio = {  },
+                    isAudioActive = isAudioPlaying,
+                    isAudioBuffering = isAudioBuffering,
+                    onClickAudio = {
+                        onEvent(ArticleDetailEvent.ToggleAudioPlayer)
+                    },
                     color = Color.White
                 )
             }

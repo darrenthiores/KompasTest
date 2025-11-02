@@ -67,6 +67,11 @@ dependencies {
     // Navigation
     implementation(libs.androidx.compose.navigation)
 
+    // ExoPlayer
+    implementation(libs.media.exoplayer)
+    implementation(libs.media.ui)
+    implementation(libs.media.common)
+
     // Coroutines
     implementation(libs.kotlinx.coroutines)
 

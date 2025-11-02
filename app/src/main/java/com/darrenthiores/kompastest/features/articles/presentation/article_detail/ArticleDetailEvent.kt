@@ -4,4 +4,5 @@ sealed interface ArticleDetailEvent {
     data object OnErrorTryAgain: ArticleDetailEvent
     data object Bookmark: ArticleDetailEvent
     data object ToggleBottomSheet: ArticleDetailEvent
+    data object ToggleAudioPlayer: ArticleDetailEvent
 }

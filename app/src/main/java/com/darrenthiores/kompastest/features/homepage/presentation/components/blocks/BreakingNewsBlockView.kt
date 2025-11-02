@@ -78,8 +78,6 @@ fun BreakingNewsBlockView(
             }
         )
 
-        println("HERE: ${mainArticle?.imageUrl}")
-
         AsyncImage(
             modifier = Modifier
                 .fillMaxWidth()
